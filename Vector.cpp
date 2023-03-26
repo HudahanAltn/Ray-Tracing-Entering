@@ -2,6 +2,9 @@
 #include <math.h>
 using namespace RayTracingEntering;
 
+Vector::Vector() {
+
+}
 Vector::Vector(float x, float y, float z) {
 
 	this->x = x;
@@ -17,14 +20,14 @@ Vector::Vector(const Vector& v) {
 	this->z = v.z;
 
 }
-int Vector::getX()const {
+float Vector::getX()const {
 
 	return this->x;
 }
-int Vector::getY()const {
+float Vector::getY()const {
 	return this->y;
 }
-int Vector::getZ()const {
+float Vector::getZ()const {
 	return this->z;
 }
 

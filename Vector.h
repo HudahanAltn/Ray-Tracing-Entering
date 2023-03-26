@@ -1,4 +1,5 @@
 #pragma once
+
 namespace RayTracingEntering {
 
 
@@ -10,14 +11,14 @@ namespace RayTracingEntering {
 		float z;
 
 	public:
-
+		Vector();
 		Vector(float x, float y, float z);
 
 		Vector(const Vector& v);
 
-		int getX()const;
-		int getY()const;
-		int getZ()const;
+		float getX()const;
+		float getY()const;
+		float getZ()const;
 		float Length();
 
 		Vector Normalize();
@@ -28,8 +29,12 @@ namespace RayTracingEntering {
 		float operator * (const Vector& v)const;
 		Vector operator * (float f)const;
 		Vector operator /(float f)const;
+		/*Vector operator * (float f, Vector v);*/
 		
 	};
 
+	Vector operator *(float f, Vector v) {
 
+		return Vector(f * v.getX(), f * v.getY(), f * v.getZ());
+	}
 }

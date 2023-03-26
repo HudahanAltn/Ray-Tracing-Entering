@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vcclr.h>
+#include "Vector.h"
 namespace RayTracingEntering
 {
 	using namespace System;
@@ -9,8 +10,8 @@ namespace RayTracingEntering
 	class Shape // base class
 	{
 	public:
-		gcroot<Color> ShapeColor; // color obejct
+		gcroot<Color> shapeColor; // color obejct
 
-		virtual float Intersect(Vertex Ro, Vertex Rd) = 0; // virtual func
+		virtual float Intersect(Vector Ro, Vector Rd) = 0; // virtual func
 	};
 }
