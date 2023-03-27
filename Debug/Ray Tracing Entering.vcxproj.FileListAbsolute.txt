@@ -1,4 +1,0 @@
-C:\Users\Hudahan\Desktop\C++\Computer Graphics\Ray Tracing Entering\Debug\Ray Tracing Entering.vcxproj.AssemblyReference.cache
-C:\Users\Hudahan\Desktop\C++\Computer Graphics\Ray Tracing Entering\Debug\RayTracingEntering.MyForm.resources
-C:\Users\Hudahan\Desktop\C++\Computer Graphics\Ray Tracing Entering\Debug\Ray Tracing Entering.vcxproj.GenerateResource.cache
-C:\Users\Hudahan\Desktop\C++\Computer Graphics\Ray Tracing Entering\Debug\Ray Tracing Entering.exe
