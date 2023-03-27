@@ -3,6 +3,7 @@
 #include "Shape.h"
 #include "Triangle.h"
 #include "Vertex.h"
+#include "Sphere.h"
 #include <vector>
 
 #ifndef _MYFORM_H
@@ -138,7 +139,7 @@
 		}
 #pragma endregion
 
-		Color TraceRay(Vertex Ro, Vertex Rd, Shape* Shapes[])
+		Color TraceRayTri(Vertex Ro, Vertex Rd, Shape* Shapes[])
 		{
 			std::vector <intersections> Intersections;//vector array
 
@@ -182,6 +183,45 @@
 			return Color::Black;// if there is no instersect returns black
 		}
 
+		Color TraceRaySphere(Vertex Ro, Vertex Rd, Shape* Shapes[])
+		{
+			std::vector<intersections> Intersections;
+
+			for (int i = 0; i < 1; i++)//one spehere
+			{
+				float t = Shapes[i]->Intersect(Ro, Rd);
+
+				if (t > 0.0F)
+				{
+					intersection.distance = t;
+					intersection.indice = i;
+
+					Intersections.push_back(intersection);
+
+					//Vertex iPoint(intersectionPoint) = Ro + t * Rd;  // first contact point with sphere and ray
+
+				}
+			}
+
+			if (Intersections.size() > 0)
+			{
+				float min_distance = FLT_MAX;
+				int   min_indis = -1;
+
+				for (int i = 0; i < Intersections.size(); i++)
+				{
+					if (Intersections[i].distance < min_distance)
+					{
+						min_indis = Intersections[i].indice;
+						min_distance = Intersections[i].distance;
+					}
+				}
+
+				return Shapes[min_indis]->shapeColor;
+			}
+
+			return Color::Black;
+		}
 
 
 	private: System::Void createTriangles(System::Object^ sender, System::EventArgs^ e) {
@@ -217,7 +257,7 @@
 			{
 				Vertex pixel = Vertex(16 * x / 799.0F - 8, 4.5 - y * 9 / 449.0F, 10);// 2d to 3d transform point
 				Vertex Rd = (pixel - camera).Normalize(); 
-				Color c = TraceRay(camera, Rd, Shapes);
+				Color c = TraceRayTri(camera, Rd, Shapes);
 				surface->SetPixel(x, y, c);
 			}
 			pictureBox1->Refresh();
@@ -237,6 +277,43 @@
 		    //surface->Save("image/" + filename);
 	}
 	private: System::Void createSpheres(System::Object^ sender, System::EventArgs^ e) {
+
+		DateTime startTime;
+		startTime = startTime.Now;
+
+		Bitmap^ surface = gcnew Bitmap(800, 450);
+		pictureBox1->Image = surface;
+
+		Sphere S(Vertex(0, 0, 200), 75, Color::Orange);	
+
+		Shape* Shapes[1] = { &S };
+
+		Vertex camera = Vertex(0, 0, 0);				
+
+		for (int y = 0; y < 450; y++)
+		{
+			for (int x = 0; x < 800; x++)
+			{
+				Vertex pixel = Vertex(16 * x / 799.0F - 8, 4.5 - y * 9 / 449.0F, 10);
+				Vertex Rd = (pixel - camera).Normalize();
+				Color c = TraceRaySphere(camera, Rd, Shapes);
+				surface->SetPixel(x, y, c);
+			}
+			pictureBox1->Refresh();
+		}
+
+		//Vertex Rd = Vertex(0, 0.6, 0.8);
+		//Color c = TraceRay(camera, Rd, Shapes);
+
+		DateTime endTime;
+		endTime = endTime.Now;
+		TimeSpan deltaTime = endTime - startTime;
+		textBox1->Text = (Math::Round(100 * deltaTime.TotalSeconds) / 100.0F).ToString();
+
+		DateTime date;
+		String^ filename = date.Now.Year.ToString() + date.Now.Month.ToString() + date.Now.Day.ToString() +
+			date.Now.Hour.ToString() + date.Now.Minute.ToString() + date.Now.Second.ToString() + ".jpg";
+		
 	}
 	};
 

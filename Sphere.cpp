@@ -5,7 +5,7 @@
 
 Sphere::Sphere(Vertex Center, float radius, Color shapeColor) {
 	this->Center = Center;
-	this->Radius = Radius;
+	this->Radius = radius;
 	this->shapeColor = shapeColor;
 }
 
@@ -14,11 +14,11 @@ float Sphere::Intersect(Vertex Ro, Vertex Rd) {
 	float s = l * Rd;
 	float l2 = l * l;
 	float r2 = Radius * Radius;
-	if (s < 0 && l2 > r2) return 0;
+	if (s < 0 && l2 > r2) return 0;//if true there is no intersect because ray beginning point outsite sphere
 	float s2 = s * s;
 	float m2 = l2 - s2;
 	if (m2 > r2) return 0;
-	float q = (float)Math::Sqrt(r2 - m2);
+	float q = (float)sqrt(r2 - m2);
 	if (l2 > r2) return s - q;
 	else return s + q;
 }
