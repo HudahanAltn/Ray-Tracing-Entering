@@ -1,30 +1,31 @@
 #pragma once
 #include "Shape.h"
-#include "Vector.h"
+#include "Vertex.h"
 #include <vcclr.h>
-namespace RayTracingEntering
-{
-	using namespace System;
-	using namespace System::Drawing;
 
+
+#ifndef _TRIANGLE_H
+#define _TRIANGLE_H
 
 	class Triangle :public Shape {
 
 	private:
 
-		Vector V0;
-		Vector V1;
-		Vector V2;
+		Vertex V0;
+		Vertex V1;
+		Vertex V2;
 
 	public:
 
-		Triangle(Vector V0, Vector V1, Vector V2, Color shapeColor);
-		Triangle(const Triangle& t);
+		Triangle(Vertex V0, Vertex V1, Vertex V2, Color shapeColor);
+	
+		Vertex getV0();
+		Vertex getV1();
+		Vertex getV2();
 
-		Vector getV0();
-		Vector getV1();
-		Vector getV2();
-		float Intersect(Vector Ro, Vector Rd);
+		float Intersect(Vertex Ro, Vertex Rd);
 	};
+#endif // !_TRIANGLE_H
 
-}
+
+

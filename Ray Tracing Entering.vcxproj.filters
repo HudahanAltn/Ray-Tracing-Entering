@@ -21,7 +21,7 @@
     <ClInclude Include="Shape.h">
       <Filter>Üst Bilgi Dosyaları</Filter>
     </ClInclude>
-    <ClInclude Include="Vector.h">
+    <ClInclude Include="Vertex.h">
       <Filter>Üst Bilgi Dosyaları</Filter>
     </ClInclude>
     <ClInclude Include="Triangle.h">
@@ -29,13 +29,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MyForm.cpp">
-      <Filter>Kaynak Dosyaları</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector.cpp">
+    <ClCompile Include="Vertex.cpp">
       <Filter>Kaynak Dosyaları</Filter>
     </ClCompile>
     <ClCompile Include="Triangle.cpp">
+      <Filter>Kaynak Dosyaları</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
       <Filter>Kaynak Dosyaları</Filter>
     </ClCompile>
   </ItemGroup>

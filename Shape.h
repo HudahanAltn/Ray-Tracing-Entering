@@ -1,9 +1,11 @@
 #pragma once
 
 #include <vcclr.h>
-#include "Vector.h"
-namespace RayTracingEntering
-{
+#include "Vertex.h"
+
+#ifndef _SHAPE_H
+#define _SHAPE_H
+
 	using namespace System;
 	using namespace System::Drawing;
 
@@ -12,6 +14,8 @@ namespace RayTracingEntering
 	public:
 		gcroot<Color> shapeColor; // color obejct
 
-		virtual float Intersect(Vector Ro, Vector Rd) = 0; // virtual func
+		virtual float Intersect(Vertex Ro, Vertex Rd) = 0; // virtual func
 	};
-}
+
+#endif // 
+
